@@ -1,0 +1,52 @@
+/<p id="notice"><%= notice %></p>
+
+<h1>Listing Lists</h1>
+
+<%= search_form_for @search do |f| %>
+<div class="field">
+  <%= f.label :name_cont, "Name Contains" %>
+  <%= f.text_field :name_cont %>
+</div>
+<div class="field">
+  <%= f.label :price_gteq, "Price Between" %>
+  <%= f.text_field :price_gteq %>
+  <%= f.label :price_lteq, "and" %>
+  <%= f.text_field :price_lteq %>
+</div>
+<div class="actions"><%= f.submit "Search" %></div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= sort_link @search, :name, "Name" %></th>
+      <th><%= sort_link @search, :category, "Category" %></th>
+      <th><%= sort_link @search, :color, "Color" %></th>
+      <th><%= sort_link @search, :size, "Size" %></th>
+      <th><%= sort_link @search, :price, "Price" %></th>
+      <th><%= sort_link @search, :priority, "Priority" %></th>
+      <th>Image</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lists.each do |list| %>
+      <tr>
+        <td><%= list.name %></td>
+        <td><%= list.category %></td>
+        <td><%= list.color %></td>
+        <td><%= list.size %></td>
+        <td><%= list.price %></td>
+        <td><%= list.priority %></td>
+        <td class="image"><img src='<%= list.image %>'></td>
+        <td><%= link_to 'Show', list %></td>
+        <td><%= link_to 'Edit', edit_list_path(list) %></td>
+        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New List', new_list_path %>

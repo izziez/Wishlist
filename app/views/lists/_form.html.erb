@@ -1,0 +1,12 @@
+<%= simple_form_for(@list) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name %>
+  <%= f.input :price, hint: "price should be in USD" %>
+  <%= f.input :category, label: "Category" %>
+  <%= f.input :color %>
+  <%= f.input :size %>
+  <%= f.input :priority, collection: 1..5, as: :radio_buttons %><br><br>
+  <%= f.input :remote_image_url %><br>
+  <%= f.button :submit %>
+
+<% end %>
